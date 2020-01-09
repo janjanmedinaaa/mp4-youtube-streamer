@@ -1,0 +1,21 @@
+{
+  "name": "mp4-youtube-streamer",
+  "version": "1.0.0",
+  "description": "Stream youtube videos via mp4 format.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mp4",
+    "youtube",
+    "stream",
+    "download"
+  ],
+  "author": "Janjan Medina",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "ytdl-core": "^1.0.6"
+  }
+}
