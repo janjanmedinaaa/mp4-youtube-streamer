@@ -1,16 +1,23 @@
-const app = require('express')()
+const express = require('express')
 const ytdl = require('ytdl-core')
+const path = require('path')
+const app = express()
 
 const YOUTUBE_FORMAT = 'https://www.youtube.com/watch?v='
 const PORT = 8080
 
+const SRC = __dirname + '/src'
+
 const streamYoutubeVideo = (req, res, download = false) => {
   var videoId = req.query.v
 
-  if (!ytdl.validateID(videoId))
-    res.send('Invalid Youtube Video ID.')
+  if (videoId === undefined || !ytdl.validateID(videoId)) {
+    res.sendFile(path.join(__dirname + '/src/error.html'))
+    return
+  }
 
   var headers = {
+    'Accept-Ranges': 'bytes',
     'Content-Type': 'video/mp4'
   }
   
@@ -29,8 +36,10 @@ const streamYoutubeVideo = (req, res, download = false) => {
     .on('data', (chunk) => res.write(chunk))
 }
 
+app.use(express.static(SRC));
+
 app.get('/', (req, res) => {
-  res.send('MP4 Youtube Streamer is still on development.')
+  res.sendFile(path.join(SRC + '/index.html'));
 })
 
 app.get('/watch', (req, res) => {

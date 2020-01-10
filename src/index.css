@@ -1,0 +1,60 @@
+body, h1, p {
+  font-family: "Raleway", sans-serif;
+  color: #1E1E20;
+}
+
+body, html {
+  height: 100%;
+}
+
+.bgimg {
+  background-image: url('https://i.pinimg.com/originals/ef/7f/b1/ef7fb1b37078b6a2aef8e40710446bfa.jpg');
+  min-height: 100%;
+  background-position: center;
+  background-size: cover;
+}
+
+input {
+  box-sizing: border-box;
+  font-size: 13px;
+  vertical-align: top;
+  border: none;
+}
+
+.wrapper {
+  text-align: center;
+  font-size: 0;
+}
+
+.search {
+  padding: 0 20px;
+  font-size: 15px;
+  width: 50%;
+  height: 50px;
+  border: 1px solid darken(white, 30%);
+  border-radius: 16px 0 0 16px;
+}
+
+.download {
+  cursor: pointer;
+  border: none;
+  background:#1E1E20;
+  padding: 15px 25px;
+  width: 130px;
+  height: 50px;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+.watch {
+  cursor: pointer;
+  border: none;
+  background:#1E1E20;
+  border-radius: 0 16px 16px 0;
+  padding: 15px 25px;
+  display: inline-block;
+  width: 100px;
+  height: 50px;
+  color: #FFFFFF;
+  text-align: center;
+}
