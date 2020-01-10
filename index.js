@@ -11,7 +11,6 @@ const streamYoutubeVideo = (req, res, download = false) => {
     res.send('Invalid Youtube Video ID.')
 
   var headers = {
-    'Accept-Ranges': 'bytes',
     'Content-Type': 'video/mp4'
   }
   
@@ -20,8 +19,10 @@ const streamYoutubeVideo = (req, res, download = false) => {
     headers['Content-Disposition'] = `attachment; filename=${mp4Filename}`
   }
 
-  ytdl(`${YOUTUBE_FORMAT}${videoId}`, { format: 'mp4' })
-    .on('response', (ytdlRes) => {
+  ytdl(`${YOUTUBE_FORMAT}${videoId}`, { 
+    format: 'mp4', 
+    highWaterMark: Math.pow(2, 16) 
+  }).on('response', (ytdlRes) => {
       headers['Content-Length'] = ytdlRes.headers['content-length']
       res.writeHead(200, headers)
     })
