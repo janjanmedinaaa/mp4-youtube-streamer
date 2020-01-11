@@ -1,10 +1,10 @@
+const functions = require('firebase-functions')
 const express = require('express')
 const ytdl = require('ytdl-core')
 const path = require('path')
 const app = express()
 
 const YOUTUBE_FORMAT = 'https://www.youtube.com/watch?v='
-const PORT = 8080
 
 const SRC = __dirname + '/src'
 
@@ -36,8 +36,6 @@ const streamYoutubeVideo = (req, res, download = false) => {
     .on('data', (chunk) => res.write(chunk))
 }
 
-app.use(express.static(SRC));
-
 app.get('/', (req, res) => {
   res.sendFile(path.join(SRC + '/index.html'));
 })
@@ -50,6 +48,4 @@ app.get('/download', (req, res) => {
   streamYoutubeVideo(req, res, true)
 })
 
-app.listen(PORT, () => {
-  console.log(`Youtube Streamer running on port: ${PORT}`)
-})
+exports.app = functions.https.onRequest(app)

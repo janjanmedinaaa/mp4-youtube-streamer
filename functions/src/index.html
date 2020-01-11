@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <title>MP4 Youtube Streamer</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <style>
+    body, h1, p {
+      font-family: "Raleway", sans-serif;
+      color: #1E1E20;
+    }
+    body, html {
+      height: 100%;
+    }
+    .bgimg {
+      background-image: url('https://i.pinimg.com/originals/ef/7f/b1/ef7fb1b37078b6a2aef8e40710446bfa.jpg');
+      min-height: 100%;
+      background-position: center;
+      background-size: cover;
+    }
+    input {
+      box-sizing: border-box;
+      font-size: 13px;
+      vertical-align: top;
+      border: none;
+    }
+    .wrapper {
+      text-align: center;
+      font-size: 0;
+    }
+    .url {
+      padding: 0 20px;
+      font-size: 15px;
+      width: 50%;
+      height: 50px;
+      border: 1px solid darken(white, 30%);
+      border-radius: 16px 0 0 16px;
+    }
+    .download {
+      cursor: pointer;
+      border: none;
+      background:#1E1E20;
+      padding: 15px 25px;
+      width: 130px;
+      height: 50px;
+      color: #FFFFFF;
+      text-align: center;
+    }
+    .watch {
+      cursor: pointer;
+      border: none;
+      background:#1E1E20;
+      border-radius: 0 16px 16px 0;
+      padding: 15px 25px;
+      display: inline-block;
+      width: 100px;
+      height: 50px;
+      color: #FFFFFF;
+      text-align: center;
+    }
+  </style>
+  <body>
+    <script>
+      function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+          results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+      }
+
+      function buttonClick(key) {
+        let url = document.getElementById("url").value;
+        let v = getParameterByName('v', url)
+        
+        if (v == null) return
+        location.replace(`/${key}?v=${v}`)
+      }
+    </script>
+
+    <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+      <div class="w3-display-topleft w3-padding-large w3-xlarge"></div>
+      <div class="w3-display-middle">
+        <h1 class="w3-jumbo w3-animate-top w3-center">MP4 Youtube Streamer</h1>
+        <hr class="w3-border-grey" style="margin:auto;width:40%">
+        <p class="w3-large w3-center">Stream Youtube videos on Regular Video Players</p>
+        <div class="wrapper w3-center">
+          <input  type="text" class="url" id="url" placeholder="https://www.youtube.com/watch?v=x7Xzvm0iLCI" />
+          <input type="button" class="download" value="DOWNLOAD" onclick="buttonClick('download')" />
+          <input type="button" class="watch" value="WATCH" onclick="buttonClick('watch')" />
+        </div>
+      </div>
+      <div class="w3-display-bottomleft w3-padding-large"></div>
+    </div>
+  </body>
+</html>

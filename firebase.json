@@ -1,0 +1,24 @@
+{
+  "hosting": {
+  "public": "functions/src",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ],
+  "rewrites":[
+    {
+      "source":"/",
+      "function":"app"
+    },
+    {
+      "source":"/watch",
+      "function":"app"
+    },
+    {
+      "source":"/download",
+      "function":"app"
+    }
+  ]
+  }
+}
