@@ -1,10 +1,13 @@
 {
   "name": "mp4-youtube-streamer",
+  "productName": "MP4 Youtube Streamer",
   "version": "1.0.0",
   "description": "Stream youtube videos via mp4 format.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "deploy": "electron-packager ."
   },
   "keywords": [
     "mp4",
@@ -17,5 +20,8 @@
   "dependencies": {
     "express": "^4.17.1",
     "ytdl-core": "^1.0.6"
+  },
+  "devDependencies": {
+    "electron": "^7.1.8"
   }
 }

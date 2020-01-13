@@ -1,10 +1,12 @@
+const { app } = require('electron')
 const express = require('express')
 const ytdl = require('ytdl-core')
 const path = require('path')
-const app = express()
+const childProc = require('child_process')
+const expressApp = express()
 
 const YOUTUBE_FORMAT = 'https://www.youtube.com/watch?v='
-const PORT = 8080
+const PORT = 1139
 
 const SRC = __dirname + '/src'
 
@@ -36,20 +38,24 @@ const streamYoutubeVideo = (req, res, download = false) => {
     .on('data', (chunk) => res.write(chunk))
 }
 
-app.use(express.static(SRC));
+expressApp.use(express.static(SRC));
 
-app.get('/', (req, res) => {
+expressApp.get('/', (req, res) => {
   res.sendFile(path.join(SRC + '/index.html'));
 })
 
-app.get('/watch', (req, res) => {
+expressApp.get('/watch', (req, res) => {
   streamYoutubeVideo(req, res)
 })
 
-app.get('/download', (req, res) => {
+expressApp.get('/download', (req, res) => {
   streamYoutubeVideo(req, res, true)
 })
 
-app.listen(PORT, () => {
-  console.log(`Youtube Streamer running on port: ${PORT}`)
+app.on('ready', () => {
+  expressApp.listen(PORT, () => {
+    console.log(`Youtube Streamer running on port: ${PORT}`)
+
+    childProc.exec(`open -a "Google Chrome" http://localhost:${PORT}`)
+  })
 })
