@@ -15,7 +15,7 @@
   "author": "Janjan Medina",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "ytdl-core": "^1.0.6"
   }
 }
